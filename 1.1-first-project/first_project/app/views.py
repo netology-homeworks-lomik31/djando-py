@@ -3,23 +3,22 @@ from django.shortcuts import render, reverse
 import datetime
 from os import listdir
 
-
-def home_view(request):
-    template_name = 'app/home.html'
+def home_view(req):
+    template_name = "app/home.html"
     # впишите правильные адреса страниц, используя
     # функцию `reverse`
     pages = {
-        'Главная страница': reverse('home'),
-        'Показать текущее время': '',
-        'Показать содержимое рабочей директории': ''
+        "Главная страница": reverse("home"),
+        "Показать текущее время": reverse("time"),
+        "Показать содержимое рабочей директории": reverse("workdir")
     }
     
     # context и параметры render менять не нужно
     # подбробнее о них мы поговорим на следующих лекциях
     context = {
-        'pages': pages
+        "pages": pages
     }
-    return render(request, template_name, context)
+    return render(req, template_name, context)
 
 
 def time_view(req):
