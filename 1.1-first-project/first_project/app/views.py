@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, reverse
 import datetime
+from os import listdir
 
 
 def home_view(request):
@@ -36,8 +37,9 @@ datetime.datetime.strftime(
     return HttpResponse(msg)
 
 
-def workdir_view(request):
+def workdir_view(req):
     # по аналогии с `time_view`, напишите код,
     # который возвращает список файлов в рабочей 
     # директории
-    raise NotImplemented
+    res = "<br>".join(listdir("./"))
+    return HttpResponse(res)
