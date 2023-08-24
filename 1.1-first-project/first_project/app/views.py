@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, reverse
+import datetime
 
 
 def home_view(request):
@@ -20,10 +21,17 @@ def home_view(request):
     return render(request, template_name, context)
 
 
-def time_view(request):
+def time_view(req):
     # обратите внимание – здесь HTML шаблона нет, 
     # возвращается просто текст
-    current_time = None
+    current_time =\
+datetime.datetime.strftime(
+    datetime.datetime.now(
+        datetime.timezone(
+            datetime.timedelta(hours=3)
+        )
+    ),
+"%d.%m.%Y-%H:%M:%S")
     msg = f'Текущее время: {current_time}'
     return HttpResponse(msg)
 
