@@ -19,7 +19,7 @@ DATA = {
 }
 
 def gen_recipe(req, dish):
-    try: servings = float(req.GET.get("servings", 1))
+    try: servings = int(req.GET.get("servings", 1))
     except: servings = 0
 
     context = {
