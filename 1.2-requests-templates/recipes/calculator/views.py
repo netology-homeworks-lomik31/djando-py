@@ -28,3 +28,13 @@ DATA = {
 #     "ингредиент2": количество2,
 #   }
 # }
+
+def gen_recipe(req, dish):
+    try: servings = float(req.GET.get("servings", 1))
+    except: servings = 0
+
+    context = {
+        "servings": servings,
+        "recipe": dict(map(lambda i: (i, round(DATA[dish][i]*servings, 3)), DATA[dish]))
+    }
+    return render(req, "calculator/index.html", context)
