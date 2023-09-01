@@ -14,8 +14,6 @@ with open("./data-398-2018-08-30.csv", newline="") as csvfile:
             data.append(i)
 
 def bus_stations(req):
-    # получите текущую страницу и передайте ее в контекст
-    # также передайте в контекст список станций на странице
     if "page" not in req.GET: return redirect(reverse("bus_stations") + "?page=1")
     try: int(req.GET["page"])
     except: return redirect(reverse("bus_stations") + "?page=1")
