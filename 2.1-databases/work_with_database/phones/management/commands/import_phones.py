@@ -1,3 +1,4 @@
+from django.utils.text import slugify
 import csv
 
 from django.core.management.base import BaseCommand
@@ -9,9 +10,14 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        with open('phones.csv', 'r') as file:
-            phones = list(csv.DictReader(file, delimiter=';'))
-
-        for phone in phones:
-            # TODO: Добавьте сохранение модели
-            pass
+        with open("./phones.csv", newline="") as csvfile:
+            reader = csv.DictReader(csvfile, delimiter=";")
+            for i in reader:
+                Phone.objects.create(
+                    name=i["name"],
+                    price=i["price"],
+                    image=i["image"],
+                    release_date=i["release_date"],
+                    lte_exists=i["lte_exists"],
+                    slug=slugify(i["name"])
+                )
