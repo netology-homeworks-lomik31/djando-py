@@ -7,5 +7,5 @@ class Sensor(models.Model):
 
 class Measurement(models.Model):
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE, blank=False)
-    value = models.IntegerField(blank=False)
+    value = models.FloatField(blank=False)
     date = models.DateTimeField(default=now, blank=False)
