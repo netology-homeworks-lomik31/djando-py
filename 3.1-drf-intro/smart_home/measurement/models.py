@@ -6,6 +6,6 @@ class Sensor(models.Model):
     description = models.CharField(max_length=100)
 
 class Measurement(models.Model):
-    name = models.ForeignKey(Sensor, on_delete=models.CASCADE, blank=False)
+    sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE, blank=False)
     value = models.IntegerField(blank=False)
     date = models.DateTimeField(default=now, blank=False)
