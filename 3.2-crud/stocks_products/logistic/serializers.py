@@ -41,7 +41,7 @@ class StockSerializer(serializers.ModelSerializer):
         stock = super().update(instance, validated_data)
 
         for i in positions:
-            product = StockProduct.objects.get(stock=stock, product_id=i['product'])
+            product = StockProduct.objects.update_or_create(stock=stock, product_id=i['product'], defaults={'price': 0, 'quantity': 1})
             for j, k in i.items():
                 setattr(product, j, k)
             product.save()
